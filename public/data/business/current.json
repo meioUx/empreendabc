@@ -1,0 +1,169 @@
+{
+  "metadata": {
+    "fonte": "Receita Federal do Brasil — Dados Abertos do Cadastro Nacional da Pessoa Jurídica (CNPJ).",
+    "urlFonte": "https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/dados-abertos",
+    "competencia": "2026-09",
+    "origem": "seed",
+    "nota": "Valores de referência fornecidos para implantação do painel. Conferência direta na base da Receita Federal pendente."
+  },
+  "overview": {
+    "competencia": "2026-09",
+    "municipio": "Balneário Camboriú",
+    "uf": "SC",
+    "estabelecimentosAtivos": 47228,
+    "matrizesAtivas": 45006,
+    "meisAtivos": 19434,
+    "percentualMei": 41.1,
+    "aberturasMes": 1047,
+    "baixasMes": 478
+  },
+  "history": [
+    {
+      "mes": "2025-08",
+      "ativos": 44924,
+      "aberturas": 686,
+      "baixas": 358
+    },
+    {
+      "mes": "2025-09",
+      "ativos": 45500,
+      "aberturas": 900,
+      "baixas": 402
+    },
+    {
+      "mes": "2025-10",
+      "ativos": 45939,
+      "aberturas": 699,
+      "baixas": 347
+    },
+    {
+      "mes": "2025-11",
+      "ativos": 46363,
+      "aberturas": 691,
+      "baixas": 341
+    },
+    {
+      "mes": "2025-12",
+      "ativos": 46783,
+      "aberturas": 824,
+      "baixas": 459
+    },
+    {
+      "mes": "2026-01",
+      "ativos": 46863,
+      "aberturas": 437,
+      "baixas": 388
+    },
+    {
+      "mes": "2026-02",
+      "ativos": 47546,
+      "aberturas": 1204,
+      "baixas": 595
+    },
+    {
+      "mes": "2026-03",
+      "ativos": 48104,
+      "aberturas": 919,
+      "baixas": 428
+    },
+    {
+      "mes": "2026-04",
+      "ativos": 48581,
+      "aberturas": 839,
+      "baixas": 450
+    },
+    {
+      "mes": "2026-05",
+      "ativos": 49027,
+      "aberturas": 791,
+      "baixas": 388
+    },
+    {
+      "mes": "2026-06",
+      "ativos": 47421,
+      "aberturas": 974,
+      "baixas": 498
+    },
+    {
+      "mes": "2026-07",
+      "ativos": 47935,
+      "aberturas": 695,
+      "baixas": 398
+    },
+    {
+      "mes": "2026-08",
+      "ativos": 48465,
+      "aberturas": 750,
+      "baixas": 367
+    },
+    {
+      "mes": "2026-09",
+      "ativos": 47228,
+      "aberturas": 1047,
+      "baixas": 478
+    }
+  ],
+  "sectors": {
+    "competencia": "2026-09",
+    "items": [
+      {
+        "nome": "Promoção de vendas",
+        "quantidade": 2304
+      },
+      {
+        "nome": "Condomínios prediais",
+        "quantidade": 2005
+      },
+      {
+        "nome": "Preparação de documentos e apoio administrativo",
+        "quantidade": 1719
+      },
+      {
+        "nome": "Cabeleireiros, manicure e pedicure",
+        "quantidade": 1619
+      },
+      {
+        "nome": "Comércio varejista de vestuário e acessórios",
+        "quantidade": 1610
+      },
+      {
+        "nome": "Corretagem de imóveis",
+        "quantidade": 1219
+      },
+      {
+        "nome": "Estética e cuidados com a beleza",
+        "quantidade": 1037
+      },
+      {
+        "nome": "Holdings não financeiras",
+        "quantidade": 1028
+      },
+      {
+        "nome": "Restaurantes e similares",
+        "quantidade": 975
+      },
+      {
+        "nome": "Lanchonetes, casas de chá e similares",
+        "quantidade": 882
+      }
+    ]
+  },
+  "neighborhoods": {
+    "competencia": "2026-08",
+    "completa": false,
+    "items": [
+      {
+        "nome": "Centro",
+        "quantidade": 26183
+      },
+      {
+        "nome": "Nações",
+        "quantidade": 4658
+      },
+      {
+        "nome": "Municípios",
+        "quantidade": 2895
+      }
+    ]
+  }
+}

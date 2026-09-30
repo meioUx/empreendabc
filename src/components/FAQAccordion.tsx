@@ -1,0 +1,12 @@
+export function FAQAccordion({ items }: { items: { question: string; answer: string }[] }) {
+  return (
+    <div className="space-y-3">
+      {items.map((item) => (
+        <details key={item.question} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <summary className="cursor-pointer text-base font-bold text-navy">{item.question}</summary>
+          <p className="mt-4 text-sm leading-6 text-slate-600">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  );
+}

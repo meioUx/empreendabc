@@ -1,0 +1,6 @@
+/* Estilos restritos ao painel; reaproveita tokens e componentes do portal. */
+.business-dashboard { background: linear-gradient(180deg, #eef2ff 0, #f7f9fb 420px); }
+.business-dashboard .business-hatch { background: repeating-linear-gradient(135deg, #e2e6f0 0, #e2e6f0 3px, #64748b 3px, #64748b 4px); }
+.business-plot [role="button"] { cursor: pointer; }
+.business-plot [role="button"]:focus-visible { outline: 2px solid #0033a5; outline-offset: 1px; }
+.business-dashboard select:focus-visible { outline: 3px solid #223dd6; outline-offset: 3px; }
