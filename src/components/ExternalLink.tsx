@@ -1,4 +1,5 @@
 import { ExternalLink as ExternalLinkIcon } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import type { ReactNode } from 'react';
 
 type ExternalLinkProps = {
@@ -13,9 +14,9 @@ const isInternal = (href: string) => href.startsWith('/') || href.startsWith('#'
 export function ExternalLink({ href, children, className = '', showIcon = true }: ExternalLinkProps) {
   if (isInternal(href)) {
     return (
-      <a href={href} className={className}>
+      <Link to={href} className={className}>
         {children}
-      </a>
+      </Link>
     );
   }
 

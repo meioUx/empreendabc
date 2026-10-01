@@ -4,6 +4,22 @@ import { useLocation } from 'react-router-dom';
 /** Progressive enhancement: content stays visible without animation support. */
 export function SiteMotion() {
   const { pathname, search } = useLocation();
+  const params = new URLSearchParams(search);
+  const courseView = `${params.get('modalidade') ?? ''}:${params.get('tema') ?? ''}`;
+
+  useEffect(() => {
+    const root = document.getElementById('conteudo');
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!root || preference.matches || !root.animate) return;
+    const animation = root.animate(
+      [{ opacity: 0.35, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }],
+      { duration: 320, easing: 'cubic-bezier(.2,.7,.2,1)' },
+    );
+    const cancel = () => animation.cancel();
+    preference.addEventListener('change', cancel);
+    return () => { animation.cancel(); preference.removeEventListener('change', cancel); };
+  }, [pathname, courseView]);
+
   useEffect(() => {
     const root = document.getElementById('conteudo');
     if (!root || !('IntersectionObserver' in window)) return;
@@ -48,6 +64,6 @@ export function SiteMotion() {
       preference.removeEventListener('change', reset);
       reset();
     };
-  }, [pathname, search]);
+  }, [pathname]);
   return null;
 }

@@ -1,5 +1,6 @@
 import { ArrowRight, Building2, CircleDollarSign, Lightbulb, Search } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import { HeroVideo } from '../components/HeroVideo';
 import { getUpcomingCourses } from '../data/content';
 
 const serviceCards = [
@@ -42,11 +43,7 @@ export function Home() {
   return (
     <>
       <section className="home-hero relative isolate overflow-hidden bg-[#f5f8ff] pb-12 pt-10 sm:pb-16 sm:pt-16">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-          <img src="/assets/banner1.jpg" alt="" fetchPriority="high" className="h-full w-full object-cover object-[65%_center]" />
-          <div className="home-hero-wash absolute inset-0" />
-          <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-b from-transparent to-[#f4f5f6] sm:h-56" />
-        </div>
+        <HeroVideo />
         <div className="container-page relative">
           <div className="flex min-h-[480px] items-center lg:min-h-[510px]">
             <div className="w-full max-w-[620px] py-2 lg:py-6">
