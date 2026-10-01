@@ -6,7 +6,7 @@ import { ExternalLink } from './ExternalLink';
 export function Footer() {
   return (
     <footer className="border-t border-[#c2c6d4] bg-white text-ink">
-      <div className="mx-auto grid w-full max-w-[1440px] gap-10 px-6 py-12 lg:grid-cols-3 lg:px-12">
+      <div className="mx-auto grid w-full max-w-[1440px] gap-10 px-6 py-12 lg:grid-cols-[1.1fr_.7fr_1.2fr_.8fr] lg:px-12">
         <div>
           <Link to="/"><img src="/assets/logo_empreenda_mais_bc_transparente.png" alt="Empreenda+ Balneário Camboriú" width="4707" height="1858" loading="lazy" className="h-auto w-56" /></Link>
           <p className="mt-5 max-w-sm text-sm leading-7 text-slate-600">
@@ -14,7 +14,6 @@ export function Footer() {
             <br />
             Praça do Empreendedor Municipal.
           </p>
-
         </div>
 
         <div>
@@ -39,7 +38,7 @@ export function Footer() {
               <MessageCircle aria-hidden="true" className="h-4 w-4 text-ocean" />
               {contactInfo.whatsapp} (Mensagens apenas)
             </ExternalLink>
-            <a className="flex items-center gap-3 text-slate-600 hover:text-navy" href={`mailto:${contactInfo.email}`}>
+            <a className="flex items-center gap-3 break-all text-slate-600 hover:text-navy" href={`mailto:${contactInfo.email}`}>
               <Mail aria-hidden="true" className="h-4 w-4 text-navy" />
               {contactInfo.email}
             </a>
@@ -48,6 +47,10 @@ export function Footer() {
               {contactInfo.hours}
             </p>
           </div>
+        </div>
+        <div className="flex items-center justify-start gap-6 border-t border-slate-100 pt-6 lg:flex-col lg:items-center lg:justify-center lg:gap-8 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
+          <img src="/bc.png" alt="Balneário Camboriú" width="800" height="308" loading="lazy" className="h-auto w-[40%] max-w-40 object-contain lg:w-full" />
+          <img src="/logo-prefeitura.png" alt="Prefeitura de Balneário Camboriú" width="4426" height="1965" loading="lazy" className="h-auto w-[40%] max-w-40 object-contain lg:w-full" />
         </div>
       </div>
     </footer>

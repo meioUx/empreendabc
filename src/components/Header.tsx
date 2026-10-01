@@ -8,12 +8,12 @@ export function Header() {
 
   return (
     <header onKeyDown={(event: { key: string }) => { if (event.key === 'Escape') setOpen(false); }} className="sticky top-0 z-40 border-b border-[#d8dadc] bg-white/90 shadow-sm backdrop-blur-md">
-      <div className="mx-auto flex min-h-[96px] w-full max-w-[1440px] items-center justify-between gap-5 px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="shrink-0 text-xl font-extrabold tracking-tight text-navy [font-family:Epilogue,Inter,sans-serif]" onClick={() => setOpen(false)}>
+      <div className="mx-auto flex min-h-[96px] flex-wrap xl:flex-nowrap w-full max-w-[1440px] items-center justify-between gap-x-4 gap-y-0 px-4 sm:px-6 lg:px-8">
+        <Link to="/" className="my-4 shrink-0 text-xl font-extrabold tracking-tight text-navy [font-family:Epilogue,Inter,sans-serif]" onClick={() => setOpen(false)}>
           <img src="/assets/logo_empreenda_mais_bc_transparente.png" alt="Empreenda+ Balneário Camboriú — início" width="4707" height="1858" className="h-auto w-[165px] sm:w-[190px]" />
         </Link>
 
-        <nav className="hidden items-center gap-5 lg:flex" aria-label="Principal">
+        <nav className="hidden items-center gap-4 xl:flex" aria-label="Principal">
           {headerNavItems.map((item) => (
             <NavLink
               key={item.href}
@@ -29,11 +29,13 @@ export function Header() {
           ))}
         </nav>
 
-        <Link to="/atendimento" className="btn-primary hidden lg:inline-flex">Fale com a gente</Link>
+        <div className="order-last flex w-full flex-wrap items-center justify-center gap-4 xl:flex-nowrap border-t border-slate-100 py-3 xl:order-none xl:w-auto xl:shrink-0 xl:border-t-0 xl:py-0">
+          <Link to="/atendimento" onClick={() => setOpen(false)} className="btn-primary whitespace-nowrap !px-3 !text-xs sm:!px-4 sm:!text-sm">Fale com a gente</Link>
+        </div>
 
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 text-navy lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 text-navy xl:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           onClick={() => setOpen((value) => !value)}
@@ -44,7 +46,7 @@ export function Header() {
       </div>
 
       {open && (
-        <nav id="mobile-menu" className="border-t border-slate-200 bg-white lg:hidden" aria-label="Menu móvel">
+        <nav id="mobile-menu" className="border-t border-slate-200 bg-white xl:hidden" aria-label="Menu móvel">
           <div className="grid gap-2 px-4 py-4">
             {headerNavItems.map((item) => (
               <NavLink
