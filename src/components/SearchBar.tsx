@@ -1,6 +1,6 @@
 import { Search } from 'lucide-react';
 import { useMemo } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { services } from '../data/content';
 import { ExternalLink } from './ExternalLink';
 
@@ -27,7 +27,19 @@ export function SearchBar() {
           className="w-full bg-transparent text-base text-ink placeholder:text-slate-500 focus:outline-none"
         />
       </div>
-      <p role="status" className="px-4 pt-3 text-sm text-slate-600">{results.length ? `${results.length} serviços encontrados` : 'Nenhum serviço encontrado. Tente outro termo ou procure atendimento.'}</p>
+      <div role="status" aria-live="polite" className="px-4 pt-3 text-sm text-slate-600">
+        {results.length ? <p>{query.trim() ? `${results.length} serviços encontrados` : 'Serviços sugeridos'}</p> : <>
+          <p className="font-semibold text-navy">Não encontramos resultados para “{query.trim()}”.</p>
+          <p className="mt-2">Tente uma palavra diferente ou mais simples, como DAS, nota fiscal ou MEI. Se precisar de ajuda, nossa equipe pode orientar você.</p>
+        </>}
+      </div>
+      {!results.length && <div className="flex flex-wrap gap-3 px-4 pt-4">
+        <button type="button" className="btn-secondary" onClick={() => {
+          setParams((previous) => { const next = new URLSearchParams(previous); next.delete('q'); return next; }, { replace: true });
+          document.getElementById('service-search')?.focus();
+        }}>Limpar busca</button>
+        <Link to="/atendimento" className="btn-primary">Falar com atendimento</Link>
+      </div>}
       <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
         {results.map((service) => (
           <ExternalLink key={service.title} href={service.href} showIcon={false} className="rounded-xl px-4 py-3 text-sm font-semibold text-navy hover:bg-mint hover:text-ocean">

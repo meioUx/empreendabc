@@ -1,5 +1,5 @@
 import { ArrowRight, Building2, CircleDollarSign, Lightbulb, Search } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getUpcomingCourses } from '../data/content';
 
 const serviceCards = [
@@ -33,6 +33,7 @@ const serviceCards = [
 ];
 
 export function Home() {
+  const navigate = useNavigate();
   const eventCards = getUpcomingCourses().map(event => ({
     ...event,
     day: event.date.split('/')[0],
@@ -56,7 +57,11 @@ export function Home() {
                 Seu próximo passo<br />começa em <span className="text-ocean">Balneário Camboriú.</span>
               </h1>
               <p className="mt-6 max-w-lg text-base leading-7 text-slate-600">Mais facilidade para empreender. Encontre serviços, orientações e oportunidades para abrir ou fortalecer seu negócio.</p>
-              <form action="/servicos" role="search" className="mt-8 rounded-2xl border border-blue-100 bg-white p-2 shadow-[0_12px_35px_-15px_rgba(0,51,165,.25)] focus-within:ring-2 focus-within:ring-ocean">
+              <form action="/servicos" onSubmit={(event: { preventDefault: () => void; currentTarget: HTMLFormElement }) => {
+                event.preventDefault();
+                const query = String(new FormData(event.currentTarget).get('q') ?? '').trim();
+                navigate({ pathname: '/servicos', search: query ? `?${new URLSearchParams({ q: query })}` : '' });
+              }} role="search" className="mt-8 rounded-2xl border border-blue-100 bg-white p-2 shadow-[0_12px_35px_-15px_rgba(0,51,165,.25)] focus-within:ring-2 focus-within:ring-ocean">
                 <label htmlFor="home-search" className="sr-only">Buscar serviços ou manuais</label>
                 <div className="flex items-center">
                   <Search aria-hidden="true" className="ml-3 h-5 w-5 shrink-0 text-ocean" />

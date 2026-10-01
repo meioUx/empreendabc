@@ -11,7 +11,15 @@ export function OnlineCourseCatalog() {
       <Link to="?modalidade=online#agenda" className="mb-5 inline-flex items-center gap-2 text-sm font-semibold text-navy hover:underline"><ArrowLeft aria-hidden="true" className="h-4 w-4" />Voltar aos temas</Link>
       <h2 id="online-title" className="text-2xl font-bold text-navy">{topic.title}</h2>
       <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-600">{topic.description}</p>
-      <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-ocean">{topic.courses.length} vídeos · Aprenda no seu ritmo</p>
+      <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-ocean">{topic.playlist ? 'Playlist' : `${topic.courses.length} vídeos`} · Aprenda no seu ritmo</p>
+      {topic.playlist && <div className="mt-7 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft">
+        <div className="aspect-video bg-slate-100">
+          <iframe src={`https://www.youtube-nocookie.com/embed/${topic.playlist.videoId}?list=${topic.playlist.playlistId}`} title={`${topic.title} - playlist`} loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowFullScreen referrerPolicy="strict-origin-when-cross-origin" className="h-full w-full border-0" />
+        </div>
+        <div className="p-6">
+          <a href={`https://www.youtube.com/watch?v=${topic.playlist.videoId}&list=${topic.playlist.playlistId}&index=2`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-ocean hover:underline">Ver playlist no YouTube <ArrowRight aria-hidden="true" className="h-4 w-4" /></a>
+        </div>
+      </div>}
             <div className="mt-7 grid gap-6 md:grid-cols-2">
               {topic.courses.map((course, index) => <article key={course.id} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft">
                 <div className="flex h-full flex-col">
@@ -34,7 +42,7 @@ export function OnlineCourseCatalog() {
           <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-mint text-ocean"><BookOpen aria-hidden="true" className="h-7 w-7" /></span>
           <h3 className="mt-6 text-xl font-bold text-navy">{item.title}</h3>
           <p className="mt-3 flex-1 text-sm leading-7 text-slate-600">{item.description}</p>
-          <div className="mt-6 flex items-center justify-between gap-3 border-t border-slate-100 pt-5"><span className="text-xs font-semibold text-slate-500">{item.courses.length} vídeos</span><span className="inline-flex items-center gap-2 text-sm font-semibold text-ocean">Ver cursos <ArrowRight aria-hidden="true" className="h-4 w-4 transition group-hover:translate-x-1" /></span></div>
+          <div className="mt-6 flex items-center justify-between gap-3 border-t border-slate-100 pt-5"><span className="text-xs font-semibold text-slate-500">{item.playlist ? 'Playlist' : `${item.courses.length} vídeos`}</span><span className="inline-flex items-center gap-2 text-sm font-semibold text-ocean">Ver cursos <ArrowRight aria-hidden="true" className="h-4 w-4 transition group-hover:translate-x-1" /></span></div>
         </Link>)}
       </div>
       <div className="mt-8"><LinkCard title="Mais cursos online do Sebrae" description="Explore conteúdos para diferentes fases do seu negócio." href="https://sc.loja.sebrae.com.br/cursos/cursos-online" cta="Ver cursos online" /></div>

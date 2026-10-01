@@ -103,7 +103,15 @@ export const meiBusinessIdeasCourses = [
 ];
 
 // Cada tema reúne sua própria sequência de vídeos. Adicione novos temas aqui.
-export const onlineCourseTopics = [
+type OnlineCourseTopic = {
+  id: string;
+  title: string;
+  description: string;
+  courses: typeof onlineCourses;
+  playlist?: { videoId: string; playlistId: string };
+};
+
+export const onlineCourseTopics: OnlineCourseTopic[] = [
   {
     id: 'abertura-mei',
     title: 'Abertura de MEI',
@@ -115,5 +123,15 @@ export const onlineCourseTopics = [
     title: 'Ideias de negócios MEI',
     description: 'Conheça histórias de quem transformou seu talento em negócio: fotografia, adestramento, maquiagem, marcenaria e churrasco.',
     courses: meiBusinessIdeasCourses,
+  },
+  {
+    id: 'dicas-pra-empreender',
+    title: 'Dicas pra empreender',
+    description: 'Assista à playlist com dicas para empreender e avance pelos vídeos no seu ritmo.',
+    courses: [],
+    playlist: {
+      videoId: 'q9dshko5nCA',
+      playlistId: 'PLnPmdlI4EGt3qkpH9VFs8BWKTgJ67HLSg',
+    },
   },
 ];

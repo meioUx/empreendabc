@@ -40,7 +40,7 @@ export const contactInfo = {
   address: 'Rua 1822, nº 1510 - Centro, Balneário Camboriú - SC, 88330-484',
   mapsHref: 'https://www.google.com/maps/search/?api=1&query=Rua+1822+1510+Centro+Balneario+Camboriu+SC',
   hours: 'Segunda a sexta, 12h às 17h30',
-  email: 'saladoempreendedorbc@gmail.com',
+  email: 'empreendamais@bc.sc.gov.br',
 };
 
 export const navItems = [
