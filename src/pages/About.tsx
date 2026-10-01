@@ -1,5 +1,5 @@
 import { PageHero } from '../components/PageHero';
-import { executedServices, partners } from '../data/content';
+import { executedServices } from '../data/content';
 
 export function About() {
   return (
@@ -25,22 +25,19 @@ export function About() {
               <p>O objetivo é orientar, facilitar a abertura e a regularização de negócios e estimular o autoatendimento. A linguagem do portal organiza os serviços pela jornada do empreendedor, e não pela estrutura interna dos órgãos.</p>
             </div>
           </div>
-          <div className="card lg:col-span-2">
-            <h2 className="text-2xl font-bold text-navy">Parceiros</h2>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {partners.map((partner) => (
-                <span key={partner} className="rounded-full bg-mint px-4 py-2 text-sm font-semibold text-ocean">{partner}</span>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
       <section className="section bg-white">
         <div className="container-page">
-          <h2 className="text-2xl font-bold text-navy">Serviços executados</h2>
-          <p className="mt-3 max-w-3xl text-slate-600">
-            Conteúdo organizado a partir dos documentos institucionais anexados, com foco em orientação e autoatendimento.
-          </p>
+          <div className="grid items-center gap-4 overflow-hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-sky-50 p-6 sm:p-8 lg:grid-cols-[1fr_420px]">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-ocean">Apoio em cada etapa</span>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">Serviços executados</h2>
+              <p className="mt-4 max-w-lg text-base leading-7 text-slate-600">Da primeira ideia à regularização do negócio, conte com orientação para encontrar o caminho e acessar os serviços de que você precisa.</p>
+              <p className="mt-4 text-sm font-semibold text-ocean">Orientação • Simplificação • Autoatendimento</p>
+            </div>
+            <img src="/assets/ilustracao-servicos.svg" alt="Ilustração de atendimento ao empreendedor, com duas pessoas, um computador e documentos conferidos" width="480" height="340" loading="lazy" className="mx-auto w-full max-w-[420px]" />
+          </div>
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {executedServices.map((service) => (
               <div key={service} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm font-semibold text-navy">
