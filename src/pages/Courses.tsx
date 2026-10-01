@@ -1,6 +1,6 @@
 import { MapPin, MessageCircle, MonitorPlay } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { CourseCard, LinkCard } from '../components/Cards';
+import { CourseCard } from '../components/Cards';
 import { ExternalLink } from '../components/ExternalLink';
 import { PageHero } from '../components/PageHero';
 import { getUpcomingCourses } from '../data/content';
@@ -63,7 +63,33 @@ export function Courses() {
                 </svg>
               </div>
             </div>
-            <div className="mt-8"><LinkCard title="Consultorias e apoio do Sebrae SC" description="Soluções, consultorias e conteúdos para empreendedores em Santa Catarina." href="https://www.sebrae-sc.com.br/solucoes/" cta="Acessar Sebrae SC" /></div>
+            <section data-motion aria-labelledby="sebrae-title" className="sebrae-support relative mt-16 overflow-hidden rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-sky-50 sm:mt-20">
+              <div className="grid items-center gap-8 p-6 sm:p-10 lg:grid-cols-[1fr_280px] lg:px-12">
+                <div>
+                  <span className="inline-flex rounded-full border border-blue-100 bg-white px-3 py-2 text-xs font-bold uppercase tracking-wider text-ocean">Apoio para crescer</span>
+                  <h3 id="sebrae-title" className="mt-5 max-w-xl text-2xl font-bold leading-tight text-navy sm:text-3xl">Consultorias e apoio do Sebrae SC</h3>
+                  <p className="mt-4 max-w-xl text-sm leading-7 text-slate-600 sm:text-base">Dê o próximo passo no seu negócio com soluções, consultorias e conteúdos para empreendedores em Santa Catarina.</p>
+                  <ExternalLink href="https://www.sebrae-sc.com.br/solucoes/" className="btn-primary mt-6">Conhecer as soluções do Sebrae</ExternalLink>
+                </div>
+                <svg viewBox="0 0 280 230" fill="none" aria-hidden="true" className="mx-auto w-full max-w-[240px] lg:max-w-[280px]">
+                  <circle cx="140" cy="115" r="100" fill="#dbeafe" />
+                  <circle cx="140" cy="115" r="82" stroke="#93b6e0" strokeDasharray="4 7" />
+                  <rect x="47" y="51" width="186" height="146" rx="18" fill="white" stroke="#bfdbfe" strokeWidth="2" />
+                  <path d="M67 75H117" stroke="#b6d0ef" strokeWidth="6" strokeLinecap="round" />
+                  <path d="M67 177H214" stroke="#dbeafe" strokeWidth="2" />
+                  <g className="sebrae-chart-bars">
+                    <rect x="73" y="139" width="28" height="37" rx="6" fill="#93c5fd" />
+                    <rect x="117" y="115" width="28" height="61" rx="6" fill="#4188da" />
+                    <rect x="161" y="91" width="28" height="85" rx="6" fill="#0033a5" />
+                  </g>
+                  <g className="sebrae-chart-badge">
+                    <circle cx="222" cy="52" r="28" fill="#ffe061" />
+                    <path d="M210 54L218 62L234 44" stroke="#0033a5" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+                  </g>
+                  <path d="M41 113V127M34 120H48M221 204V216M215 210H227" stroke="#4188da" strokeWidth="3" strokeLinecap="round" />
+                </svg>
+              </div>
+            </section>
           </div>}
         </div>
       </section>

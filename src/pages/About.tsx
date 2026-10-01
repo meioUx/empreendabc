@@ -12,7 +12,7 @@ export function About() {
         description="A Praça do Empreendedor de Balneário Camboriú é um ponto de orientação e acesso a serviços para quem empreende, quer formalizar uma atividade ou precisa regularizar a empresa."
       />
       <section className="section">
-        <div className="container-page grid items-start gap-8 lg:grid-cols-2">
+        <div className="container-page grid items-stretch gap-8 lg:grid-cols-2">
           <figure data-motion className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft">
             <img src="/assets/sala%20do%20empreendedor.jpg" alt="Interior da Sala do Empreendedor, com balcão de atendimento, sofás de espera e acesso à sala de capacitação" width="547" height="365" className="block h-auto w-full" />
             <figcaption className="px-6 py-4">

@@ -91,3 +91,24 @@ footer { border-top: 4px solid #e2e6f0; }
     background: linear-gradient(90deg, rgba(245,248,255,.96), rgba(245,248,255,.83)), linear-gradient(0deg, rgba(245,248,255,.4), transparent);
   }
 }
+
+@keyframes sebrae-chart-grow {
+  from { transform: scaleY(.2); }
+  to { transform: scaleY(1); }
+}
+@keyframes sebrae-badge-enter {
+  from { opacity: 0; transform: translateY(8px) scale(.85); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sebrae-support.motion-enter .sebrae-chart-bars {
+    transform-box: fill-box;
+    transform-origin: center bottom;
+    animation: sebrae-chart-grow 450ms cubic-bezier(.2,.7,.2,1) both;
+  }
+  .sebrae-support.motion-enter .sebrae-chart-badge {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: sebrae-badge-enter 450ms ease-out both;
+  }
+}
