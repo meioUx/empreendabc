@@ -86,15 +86,15 @@ export const services = [
 ];
 
 export const executedServices = [
-  'Formalização do MEI',
-  'Alteração e baixa do MEI',
-  'Declaração anual de faturamento do MEI',
-  'Regularização do MEI',
-  'Emissão de guias do MEI',
-  'Emissão de nota fiscal de serviço do MEI',
-  'Capacitações',
-  'Consultorias',
-  'Orientações',
+  { title: 'Formalização do MEI', href: '/mei' },
+  { title: 'Alteração e baixa do MEI', href: '/mei' },
+  { title: 'Declaração anual de faturamento do MEI', href: '/mei' },
+  { title: 'Regularização do MEI', href: '/mei' },
+  { title: 'Emissão de guias do MEI', href: '/mei' },
+  { title: 'Emissão de nota fiscal de serviço do MEI', href: '/nota-fiscal' },
+  { title: 'Capacitações', href: '/cursos-consultorias' },
+  { title: 'Consultorias', href: '/cursos-consultorias' },
+  { title: 'Orientações', href: '/atendimento' },
 ];
 
 export const serviceCategories = [

@@ -1,3 +1,5 @@
+import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { PageHero } from '../components/PageHero';
 import { executedServices } from '../data/content';
 
@@ -40,9 +42,10 @@ export function About() {
           </div>
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {executedServices.map((service) => (
-              <div key={service} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm font-semibold text-navy">
-                {service}
-              </div>
+              <Link key={service.title} to={service.href} className="group flex items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm font-semibold text-navy transition hover:border-ocean hover:bg-mint focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ocean">
+                <span>{service.title}</span>
+                <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" />
+              </Link>
             ))}
           </div>
         </div>
