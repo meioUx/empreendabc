@@ -10,7 +10,14 @@ export function About() {
         description="A Praça do Empreendedor de Balneário Camboriú é um ponto de orientação e acesso a serviços para quem empreende, quer formalizar uma atividade ou precisa regularizar a empresa."
       />
       <section className="section">
-        <div className="container-page grid gap-8 lg:grid-cols-[1fr_0.8fr]">
+        <div className="container-page grid items-start gap-8 lg:grid-cols-2">
+          <figure data-motion className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft">
+            <img src="/assets/sala%20do%20empreendedor.jpg" alt="Interior da Sala do Empreendedor, com balcão de atendimento, sofás de espera e acesso à sala de capacitação" width="547" height="365" className="block h-auto w-full" />
+            <figcaption className="px-6 py-4">
+              <p className="text-sm font-bold text-navy">Um espaço para acolher quem empreende</p>
+              <p className="mt-1 text-sm text-slate-600">Sala do Empreendedor • Balneário Camboriú</p>
+            </figcaption>
+          </figure>
           <div className="card">
             <h2 className="text-2xl font-bold text-navy">Orientação, simplificação e autoatendimento</h2>
             <div className="mt-5 space-y-4 leading-8 text-slate-700">
@@ -18,7 +25,7 @@ export function About() {
               <p>O objetivo é orientar, facilitar a abertura e a regularização de negócios e estimular o autoatendimento. A linguagem do portal organiza os serviços pela jornada do empreendedor, e não pela estrutura interna dos órgãos.</p>
             </div>
           </div>
-          <div className="card">
+          <div className="card lg:col-span-2">
             <h2 className="text-2xl font-bold text-navy">Parceiros</h2>
             <div className="mt-5 flex flex-wrap gap-2">
               {partners.map((partner) => (

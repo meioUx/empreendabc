@@ -61,3 +61,33 @@ footer { border-top: 4px solid #e2e6f0; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
 }
+
+/* Short, one-time entrances; no perpetual motion or hidden content. */
+@keyframes content-enter {
+  from { opacity: 0.25; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .motion-enter { animation: content-enter 480ms cubic-bezier(.2,.7,.2,1) both; }
+  .card { transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease; }
+  .btn-primary, .btn-secondary { transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease; }
+  .btn-primary:active, .btn-secondary:active { transform: scale(.98); }
+  header a { transition: color 180ms ease, background-color 180ms ease; }
+  @media (hover: hover) {
+    .card:hover { transform: translateY(-3px); border-color: #93b6e0; box-shadow: 0 12px 28px -16px rgb(0 51 165 / .28); }
+    .btn-primary:hover, .btn-secondary:hover { transform: translateY(-2px); box-shadow: 0 8px 18px -10px rgb(0 51 165 / .35); }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-enter { animation: none !important; }
+  .card, .btn-primary, .btn-secondary { transform: none !important; }
+}
+
+.home-hero-wash {
+  background: linear-gradient(90deg, rgba(245,248,255,.98) 0%, rgba(245,248,255,.95) 30%, rgba(245,248,255,.75) 50%, rgba(245,248,255,.22) 76%, rgba(245,248,255,.12) 100%);
+}
+@media (max-width: 767px) {
+  .home-hero-wash {
+    background: linear-gradient(90deg, rgba(245,248,255,.96), rgba(245,248,255,.83)), linear-gradient(0deg, rgba(245,248,255,.4), transparent);
+  }
+}

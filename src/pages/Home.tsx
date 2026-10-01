@@ -1,14 +1,6 @@
-import { ArrowRight, Building2, CircleDollarSign, FileText, Lightbulb, MessageSquare, Search, UserRound } from 'lucide-react';
+import { ArrowRight, Building2, CircleDollarSign, Lightbulb, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { ExternalLink } from '../components/ExternalLink';
-import { contactInfo } from '../data/content';
-
-const heroCards = [
-  { label: 'Abrir negócio', description: 'Roteiro guiado', href: '/abrir-meu-negocio', icon: Building2, bg: 'from-[#d7e2ff] to-white', color: 'text-navy' },
-  { label: 'Sou MEI', description: 'Serviços oficiais', href: '/mei', icon: UserRound, bg: 'from-[#e2e6f0] to-white', color: 'text-ocean' },
-  { label: 'Nota fiscal', description: 'Emissão e manuais', href: '/nota-fiscal', icon: FileText, bg: 'from-[#ffdea5] to-white', color: 'text-[#563d00]' },
-  { label: 'WhatsApp', description: 'Atendimento escrito', href: contactInfo.whatsappHref, icon: MessageSquare, bg: 'from-[#e0ebff] to-white', color: 'text-ocean' },
-];
+import { getUpcomingCourses } from '../data/content';
 
 const serviceCards = [
   {
@@ -40,91 +32,47 @@ const serviceCards = [
   },
 ];
 
-const eventCards = [
-  { day: '15', month: 'JUL', title: 'Comunicação assertiva para os negócios', meta: 'Casa dos Conselhos - 19h', bg: 'bg-navy', href: '/cursos-consultorias#agenda' },
-  { day: '22', month: 'JUL', title: 'Praça do Empreendedor', meta: 'Vila Real - 9h às 12h e 13h às 17h', bg: 'bg-ocean', href: '/cursos-consultorias#agenda' },
-];
-
 export function Home() {
+  const eventCards = getUpcomingCourses().map(event => ({
+    ...event,
+    day: event.date.split('/')[0],
+    month: new Intl.DateTimeFormat('pt-BR', { month: 'short', timeZone: 'America/Sao_Paulo' }).format(new Date(event.endsAt)).replace('.', ''),
+  }));
   return (
     <>
-      <section className="relative min-h-[720px] overflow-hidden bg-[#f7f9fb] lg:min-h-[820px]">
-        <div className="absolute inset-0">
-          <img
-            src="/assets/banner1.jpg"
-            alt="Espaço de trabalho moderno em Balneário Camboriú"
-            className="h-full w-full object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#f7f9fb] via-[#f7f9fb]/95 to-[#f7f9fb]/80 lg:to-transparent" />
-          <div className="absolute inset-0 bg-white/25" />
+      <section className="home-hero relative isolate overflow-hidden bg-[#f5f8ff] pb-12 pt-10 sm:pb-16 sm:pt-16">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+          <img src="/assets/banner1.jpg" alt="" fetchPriority="high" className="h-full w-full object-cover object-[65%_center]" />
+          <div className="home-hero-wash absolute inset-0" />
+          <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-b from-transparent to-[#f4f5f6] sm:h-56" />
         </div>
-
-        <div className="relative z-10 mx-auto flex min-h-[720px] w-full max-w-[1440px] items-center px-6 py-14 lg:min-h-[820px] lg:px-12">
-          <div className="w-full min-w-0 max-w-[640px]">
-            <span className="inline-flex rounded-full bg-[#e2e6f0] px-5 py-2 text-xs font-medium uppercase tracking-wide text-navy">
-              Praça do Empreendedor
-            </span>
-
-            <h1 className="mt-8 text-[36px] font-extrabold leading-[1.08] tracking-tight text-navy [font-family:Epilogue,Inter,sans-serif] sm:text-[60px] lg:text-[60px]">
-              Empreenda em
-              <br />
-              <span className="text-ocean">Balneário Camboriú</span>
-              <br />
-              com simplicidade
-            </h1>
-
-            <p className="mt-8 max-w-[600px] text-base leading-8 text-[#424752]">
-              Transformamos a burocracia em oportunidade. Tenha acesso rápido a serviços, suporte técnico e eventos que impulsionam o seu negócio.
-            </p>
-
-            <form action="/servicos" role="search" className="mt-9 flex max-w-[640px] items-center rounded-xl border border-[#c2c6d4] bg-white p-2 shadow-[0_12px_28px_rgba(0,63,135,0.12)]">
-              <Search aria-hidden="true" className="ml-4 h-5 w-5 shrink-0 text-navy" />
-              <label htmlFor="home-search" className="sr-only">Buscar serviços ou manuais</label>
-              <input
-                id="home-search"
-                name="q"
-                type="search"
-                className="h-12 min-w-0 flex-1 border-none bg-transparent px-3 sm:px-6 text-base text-ink placeholder:text-slate-500 focus:outline-none"
-                placeholder="Encontre serviços ou manuais..."
-              />
-              <button type="submit" className="rounded-lg bg-navy px-4 sm:px-8 py-4 text-sm font-semibold text-white transition hover:bg-[#0056b3]">
-                Buscar
-              </button>
-            </form>
-
-            <div className="mt-12 grid max-w-[680px] gap-4 sm:grid-cols-2">
-              {heroCards.map((card) => {
-                const Icon = card.icon;
-                const content = (
-                  <>
-                    <span className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${card.bg} ${card.color} shadow-[inset_0_1px_0_rgba(255,255,255,0.85),0_10px_20px_rgba(0,63,135,0.10)]`}>
-                      <Icon aria-hidden="true" className="h-6 w-6" />
-                    </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="block text-sm font-bold text-ink">{card.label}</span>
-                      <span className="mt-1 block text-xs font-medium text-slate-600">{card.description}</span>
-                    </span>
-                    <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 text-navy/55 transition group-hover:translate-x-1 group-hover:text-ocean" />
-                  </>
-                );
-
-                const className =
-                  'group flex min-h-[92px] items-center gap-4 rounded-2xl border border-white/80 bg-white/90 px-5 py-4 text-left shadow-[0_12px_30px_rgba(0,63,135,0.12)] backdrop-blur-md transition hover:-translate-y-1 hover:border-white hover:bg-white/95 hover:shadow-[0_18px_36px_rgba(0,63,135,0.16)]';
-
-                return card.href.startsWith('http') ? (
-                  <ExternalLink key={card.label} href={card.href} showIcon={false} className={className}>
-                    {content}
-                  </ExternalLink>
-                ) : (
-                  <Link key={card.label} to={card.href} className={className}>
-                    {content}
-                  </Link>
-                );
-              })}
+        <div className="container-page relative">
+          <div className="flex min-h-[480px] items-center lg:min-h-[510px]">
+            <div className="w-full max-w-[620px] py-2 lg:py-6">
+              <span className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-3 py-2 text-[10px] font-bold uppercase tracking-[.14em] text-navy sm:text-xs">
+                <span aria-hidden="true" className="h-2 w-2 rounded-full bg-ocean" />Praça do Empreendedor
+              </span>
+              <h1 className="mt-6 text-[2.5rem] font-extrabold leading-[1.08] tracking-[-.045em] text-navy sm:text-[3.5rem] xl:text-[3.9rem]">
+                Seu próximo passo<br />começa em <span className="text-ocean">Balneário Camboriú.</span>
+              </h1>
+              <p className="mt-6 max-w-lg text-base leading-7 text-slate-600">Mais facilidade para empreender. Encontre serviços, orientações e oportunidades para abrir ou fortalecer seu negócio.</p>
+              <form action="/servicos" role="search" className="mt-8 rounded-2xl border border-blue-100 bg-white p-2 shadow-[0_12px_35px_-15px_rgba(0,51,165,.25)] focus-within:ring-2 focus-within:ring-ocean">
+                <label htmlFor="home-search" className="sr-only">Buscar serviços ou manuais</label>
+                <div className="flex items-center">
+                  <Search aria-hidden="true" className="ml-3 h-5 w-5 shrink-0 text-ocean" />
+                  <input id="home-search" name="q" type="search" className="h-12 min-w-0 flex-1 rounded-lg bg-transparent px-3 text-sm text-ink placeholder:text-slate-500 focus:outline-none" placeholder="O que seu negócio precisa?" />
+                  <button type="submit" className="btn-primary shrink-0 !rounded-xl !px-4 sm:!px-6">Buscar</button>
+                </div>
+              </form>
+              <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-slate-500">
+                <span>Mais procurados:</span>
+                <Link to="/viabilidade-licencas-alvaras" className="font-semibold text-navy hover:underline">Alvarás</Link>
+                <Link to="/nota-fiscal" className="font-semibold text-navy hover:underline">Nota fiscal</Link>
+                <Link to="/cursos-consultorias" className="font-semibold text-navy hover:underline">Cursos</Link>
+              </div>
             </div>
           </div>
         </div>
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-40 bg-gradient-to-b from-transparent via-[#f7f9fb]/75 to-[#f4f5f6] sm:h-48" />
       </section>
 
       <section className="bg-gradient-to-b from-[#f4f5f6] via-[#eceef0] to-[#eceef0] py-12 lg:py-16">
@@ -177,15 +125,16 @@ export function Home() {
             </p>
 
             <div className="mt-10 space-y-5">
+              {eventCards.length === 0 && <p className="rounded-xl bg-slate-50 p-5 text-sm text-slate-600">Novos encontros serão divulgados em breve. Acompanhe a agenda da Praça do Empreendedor.</p>}
               {eventCards.map((event) => (
-                <Link key={event.title} to={event.href} className="group flex items-center gap-5 rounded-xl border border-[#c2c6d4] bg-[#f7f9fb] p-5 transition hover:-translate-y-0.5 hover:border-navy hover:bg-white">
-                  <div className={`${event.bg} flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-lg text-white`}>
+                <Link key={`${event.date}-${event.theme}`} to="/cursos-consultorias?modalidade=presencial#agenda" className="group flex items-center gap-5 rounded-xl border border-[#c2c6d4] bg-[#f7f9fb] p-5 transition hover:-translate-y-0.5 hover:border-navy hover:bg-white">
+                  <div className={`bg-navy flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-lg text-white`}>
                     <span className="text-sm font-bold leading-none">{event.day}</span>
                     <span className="mt-1 text-[10px] font-bold uppercase">{event.month}</span>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h3 className="text-sm font-semibold text-ink">{event.title}</h3>
-                    <p className="mt-1 text-sm text-[#424752]">{event.meta}</p>
+                    <h3 className="text-sm font-semibold text-ink">{event.theme}</h3>
+                    <p className="mt-1 text-sm text-[#424752]">{event.format} • {event.location}</p>
                   </div>
                   <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 text-navy/50 transition group-hover:translate-x-1 group-hover:text-ocean" />
                 </Link>
@@ -197,17 +146,24 @@ export function Home() {
             </Link>
           </div>
 
-          <div className="relative aspect-video overflow-hidden rounded-[32px] shadow-[0_28px_60px_rgba(0,63,135,0.18)]">
-            <img src="/assets/hub-eventos-stitch.jpg" alt="Empreendedores em ambiente de orientação e capacitação" className="h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-navy/10" />
-            <Link
-              to="/cenario-empreendedor-bc"
-              aria-label="Abrir cenário empreendedor"
-              className="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-navy shadow-xl transition hover:scale-105"
-            >
-              <ArrowRight aria-hidden="true" className="h-8 w-8" />
-            </Link>
-          </div>
+          <Link
+            to="/cenario-empreendedor-bc"
+            className="group relative flex min-h-[320px] items-end overflow-hidden rounded-[32px] shadow-[0_28px_60px_rgba(0,63,135,0.18)] sm:aspect-video"
+          >
+            <img src="/assets/hub-eventos-stitch.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#062553] via-[#062553]/70 to-[#062553]/10" />
+            <div className="relative flex w-full items-end gap-4 p-6 sm:p-8">
+              <div className="min-w-0 flex-1 text-white">
+                <p className="text-xs font-semibold uppercase tracking-wider text-blue-100">Balneário Camboriú</p>
+                <h3 className="mt-2 text-2xl font-bold leading-tight sm:text-3xl">Central de Dados do Empreendedorismo</h3>
+                <p className="mt-3 text-sm leading-6 text-blue-50">Explore os indicadores e o cenário dos negócios de BC.</p>
+                <span className="mt-4 inline-block text-sm font-bold underline decoration-white/50 underline-offset-4 group-hover:decoration-white">Acessar a central de dados</span>
+              </div>
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-navy shadow-xl sm:h-16 sm:w-16">
+                <ArrowRight aria-hidden="true" className="h-6 w-6 transition-transform motion-safe:group-hover:translate-x-1 sm:h-7 sm:w-7" />
+              </span>
+            </div>
+          </Link>
         </div>
       </section>
     </>

@@ -29,9 +29,10 @@ type LinkCardProps = {
   cta?: string;
   icon?: LucideIcon;
   placeholder?: boolean;
+  source?: string;
 };
 
-export function LinkCard({ title, description, href, cta = 'Acessar', icon: Icon, placeholder }: LinkCardProps) {
+export function LinkCard({ title, description, href, cta = 'Acessar', icon: Icon, placeholder, source }: LinkCardProps) {
   return (
     <div className="card flex h-full flex-col">
       <div className="flex items-start gap-4">
@@ -42,6 +43,7 @@ export function LinkCard({ title, description, href, cta = 'Acessar', icon: Icon
         </div>
       </div>
       <p className="mt-4 flex-1 text-sm leading-6 text-slate-600">{description}</p>
+      {source && <p className="mt-4 text-xs font-semibold leading-5 text-ocean">Fonte: {source}</p>}
       <ExternalLink href={href} className={placeholder ? 'btn-secondary mt-6' : 'btn-primary mt-6'}>
         {cta}
       </ExternalLink>
@@ -81,7 +83,7 @@ export function CourseCard({ course }: { course: { date: string; theme: string; 
         <p className="flex gap-2 leading-6"><UsersRound aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-ocean" />{course.audience}</p>
       </div>
       <ExternalLink href={course.signup} className="btn-secondary mt-6">
-        Inscrição em breve
+        Inscrever-se pelo WhatsApp
       </ExternalLink>
     </div>
   );
