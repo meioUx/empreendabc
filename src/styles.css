@@ -112,3 +112,12 @@ footer { border-top: 4px solid #e2e6f0; }
     animation: sebrae-badge-enter 450ms ease-out both;
   }
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  .category-card { transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease; }
+  .category-card:hover, .category-card:focus-within {
+    transform: translateY(-4px);
+    border-color: #b6d0ef;
+    box-shadow: 0 20px 40px -24px rgba(0, 51, 165, .3);
+  }
+}

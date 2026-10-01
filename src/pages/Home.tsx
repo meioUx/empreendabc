@@ -10,7 +10,7 @@ const serviceCards = [
     href: '/mei',
     bg: 'bg-[#e8eef8]',
     color: 'text-navy',
-    items: ['Consultar viabilidade', 'Portal do Empreendedor', 'Alvarás online'],
+    items: [{ title: 'Consultar viabilidade', href: '/viabilidade-licencas-alvaras' }, { title: 'Portal do Empreendedor', href: '/mei' }, { title: 'Alvarás online', href: '/viabilidade-licencas-alvaras' }],
   },
   {
     title: 'Tributos e Impostos',
@@ -19,7 +19,7 @@ const serviceCards = [
     href: '/regularidade-certidoes',
     bg: 'bg-[#eef2ff]',
     color: 'text-ocean',
-    items: ['Emissão de NFS-e', 'Parcelamento de débitos', 'Certidões negativas'],
+    items: [{ title: 'Emissão de NFS-e', href: '/nota-fiscal' }, { title: 'Parcelamento de débitos', href: '/regularidade-certidoes' }, { title: 'Certidões negativas', href: '/regularidade-certidoes' }],
   },
   {
     title: 'Capacitação e Apoio',
@@ -28,7 +28,7 @@ const serviceCards = [
     href: '/cursos-consultorias',
     bg: 'bg-[#f4efe8]',
     color: 'text-[#563d00]',
-    items: ['Oficinas e cursos', 'Consultorias', 'Oportunidades de apoio'],
+    items: [{ title: 'Oficinas e cursos', href: '/cursos-consultorias' }, { title: 'Consultorias', href: '/cursos-consultorias' }, { title: 'Oportunidades de apoio', href: '/atendimento' }],
   },
 ];
 
@@ -80,41 +80,47 @@ export function Home() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-b from-[#f4f5f6] via-[#eceef0] to-[#eceef0] py-12 lg:py-16">
+      <section aria-labelledby="categories-title" className="bg-gradient-to-b from-[#f4f5f6] to-[#f5f8fc] py-14 lg:py-20">
         <div className="mx-auto w-full max-w-[1440px] px-6 lg:px-12">
-          <div className="flex items-end justify-between gap-6">
+          <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
             <div>
-              <h2 className="text-3xl font-bold tracking-tight text-ink">Serviços por categoria</h2>
-              <p className="mt-3 text-sm text-[#424752]">Tudo o que o seu negócio precisa, organizado de forma simples.</p>
+              <span className="text-xs font-bold uppercase tracking-[.16em] text-ocean">Como podemos ajudar?</span>
+              <h2 id="categories-title" className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">Serviços por categoria</h2>
+              <p className="mt-3 max-w-xl text-sm leading-7 text-slate-600">Escolha o que seu negócio precisa e encontre o caminho para o próximo passo.</p>
             </div>
-            <Link to="/servicos" className="hidden items-center gap-2 text-sm font-semibold text-navy hover:underline sm:inline-flex">
+            <Link to="/servicos" className="inline-flex shrink-0 items-center gap-3 self-start rounded-full border border-blue-200 bg-white px-5 py-3 text-sm font-semibold text-navy transition hover:border-ocean hover:bg-blue-50 sm:self-auto">
               Ver todos os serviços <ArrowRight aria-hidden="true" className="h-4 w-4" />
             </Link>
           </div>
-
-          <div className="mt-14 grid gap-7 md:grid-cols-3">
-            {serviceCards.map((card) => {
+          <div className="mt-9 grid gap-6 lg:grid-cols-3">
+            {serviceCards.map((card, index) => {
               const Icon = card.icon;
               return (
-                <Link
-                  key={card.title}
-                  to={card.href}
-                  className="group min-h-[370px] rounded-2xl border border-[#e0e3e5] bg-white p-6 lg:p-8 shadow-[0_8px_20px_rgba(0,63,135,0.05)] transition hover:-translate-y-1 hover:shadow-[0_14px_28px_rgba(0,63,135,0.12)]"
-                >
-                  <span className={`flex h-16 w-16 items-center justify-center rounded-2xl ${card.bg} ${card.color}`}>
-                    <Icon aria-hidden="true" className="h-8 w-8" />
-                  </span>
-                  <h3 className="mt-10 text-2xl font-bold text-ink">{card.title}</h3>
-                  <p className="mt-5 text-sm leading-7 text-[#424752]">{card.description}</p>
-                  <ul className="mt-8 space-y-4 text-sm text-ink">
-                    {card.items.map((item) => (
-                      <li key={item} className="flex items-center gap-3">
-                        <span aria-hidden="true" className={`h-2 w-2 rounded-full ${card.color === 'text-navy' ? 'bg-navy' : card.color === 'text-ocean' ? 'bg-ocean' : 'bg-[#563d00]'}`} />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </Link>
+                <article key={card.title} className="category-card group relative flex flex-col overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-[0_12px_35px_-20px_rgba(0,51,165,.2)]">
+                  <div className={`relative overflow-hidden px-6 pb-6 pt-7 sm:px-8 ${card.bg}`}>
+                    <Icon aria-hidden="true" strokeWidth={1} className={`pointer-events-none absolute -right-5 -top-3 h-40 w-40 -rotate-12 opacity-[.07] ${card.color}`} />
+                    <div className="relative flex items-center justify-between">
+                      <span className={`flex h-14 w-14 items-center justify-center rounded-2xl border border-white bg-white/90 shadow-sm ${card.color}`}><Icon aria-hidden="true" className="h-7 w-7" /></span>
+                      <span className={`text-[10px] font-bold uppercase tracking-[.16em] ${card.color}`}>{['Comece e formalize', 'Organize e regularize', 'Aprenda e cresça'][index]}</span>
+                    </div>
+                    <h3 className="relative mt-6 text-2xl font-bold tracking-tight text-navy"><Link to={card.href} className="rounded focus-visible:outline-offset-4 hover:underline">{card.title}</Link></h3>
+                  </div>
+                  <div className="flex flex-1 flex-col px-6 pb-6 pt-5 sm:px-8">
+                    <p className="min-h-[56px] text-sm leading-7 text-slate-600">{card.description}</p>
+                    <ul className="mb-6 mt-5 divide-y divide-slate-100">
+                      {card.items.map((item) => (
+                        <li key={item.title}>
+                          <Link to={item.href} className="group/service flex min-h-12 items-center justify-between gap-3 rounded-lg py-3 text-sm font-medium text-navy transition hover:bg-blue-50 hover:px-3 focus-visible:outline-offset-2">
+                            {item.title}<ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0 text-slate-400 transition group-hover/service:text-ocean motion-safe:group-hover/service:translate-x-1" />
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link to={card.href} aria-label={`Explorar ${card.title}`} className={`mt-auto flex items-center justify-between gap-3 rounded-xl px-4 py-3 text-sm font-bold transition hover:brightness-95 ${card.bg} ${card.color}`}>
+                      Explorar categoria <ArrowRight aria-hidden="true" className="h-4 w-4" />
+                    </Link>
+                  </div>
+                </article>
               );
             })}
           </div>
